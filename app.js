@@ -69,6 +69,24 @@
       computerSelection = computerPlay();
       playerSelection = prompt("Rock, Paper, or Scissors?");
       let result = playRound(playerSelection, computerSelection);
+      if (result === Outcomes.Draw) {
+        limit += 1;
+      } else if (result === Outcomes.Computer) {
+        Score.Computer += 1;
+        if (Score.Computer === 2) {
+          console.log("Computer WON!");
+          break;
+        }
+      } else if (result === Outcomes.Human) {
+        Score.Player += 1;
+        if (Score.Player === 2) {
+          console.log("Human WON!");
+          break;
+        }
+      } else if (Outcomes.Illegal) {
+        limit += 1;
+        console.log(`${playerSelection} is illegal`);
+      }
     }
   }
   game();

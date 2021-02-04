@@ -61,29 +61,43 @@
   }
   // Game
   function game() {
+    // Score keeping variable
     const Score = { Player: 0, Computer: 0 };
+    // Selections
     let playerSelection;
     let computerSelection;
+    // Minimum number of rounds
     let limit = 5;
+    // Loop until a player wins
     for (let index = 0; index < limit; index++) {
+      // Get Computer selection first
       computerSelection = computerPlay();
+      // Get Human selection
       playerSelection = prompt("Rock, Paper, or Scissors?");
+      // Result of both selections
       let result = playRound(playerSelection, computerSelection);
+      // Score tracking
       if (result === Outcomes.Draw) {
+        // On draw
+        // Increase the limit so that a player could win
         limit += 1;
-      } else if (result === Outcomes.Computer) {
+      }
+      else if (result === Outcomes.Computer) {
+        // If computer wins
         Score.Computer += 1;
         if (Score.Computer === 2) {
           console.log("Computer WON!");
           break;
         }
       } else if (result === Outcomes.Human) {
+        // If human wins
         Score.Player += 1;
         if (Score.Player === 2) {
           console.log("Human WON!");
           break;
         }
       } else if (Outcomes.Illegal) {
+        // If human inputs something else
         limit += 1;
         console.log(`${playerSelection} is illegal`);
       }
